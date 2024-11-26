@@ -9,13 +9,6 @@ import 'package:get/get.dart';
 class UserPage extends StatefulWidget {
   @override
   _UserPageState createState() => _UserPageState();
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('User'),
-      ),
-    );
-  }
 }
 
 class _UserPageState extends State<UserPage> {
