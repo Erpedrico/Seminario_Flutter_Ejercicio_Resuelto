@@ -70,7 +70,7 @@ class UserService {
     }
   }
 
-  Future<int> EditUser(UserModel newUser, String id) async {
+  Future<int> EditUser( String id, UserModel newUser) async {
     print('createUser');
     print('try');
     //Aquí llamamos a la función request
@@ -89,10 +89,10 @@ class UserService {
     statusCode = response.statusCode;
     print('Status code: $statusCode');
 
-    if (statusCode == 201) {
+    if (statusCode == 200) {
       // Si el usuario se crea correctamente, retornamos el código 201
-      print('201');
-      return 201;
+      print('200');
+      return 200;
     } else if (statusCode == 400) {
       // Si hay campos faltantes, retornamos el código 400
       print('400');

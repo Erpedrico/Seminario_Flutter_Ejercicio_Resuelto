@@ -37,60 +37,6 @@ class _UserPageState extends State<UserPage> {
     });
   }
 
-  // funció per eliminar un usuari
-  Future<void> deleteUser(String userId) async {
-    final response = await _userService.deleteUser(userId);
-
-    if (response ==201) {
-      setState(() {
-        _data.removeWhere((user) => user['_id'] == userId);
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Usuari eliminat amb èxit!'),
-          duration: Duration(seconds: 3),
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error desconegut al eliminar'),
-        ),
-      );
-    }
-  }
-
-  // Funció per eliminar un usuari amb confirmació
-  Future<void> _confirmDeleteUser(String userId) async {
-    bool confirm = await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Estàs segur?'),
-          content: Text('Vols eliminar aquest usuari? Aquesta acció no es pot desfer.'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(false); // Cancela l'eliminació
-              },
-              child: Text('No'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(true); // Confirma l'eliminació
-              },
-              child: Text('Sí'),
-            ),
-          ],
-        );
-      },
-    ) ?? false; // Si el diàleg es tanca sense selecció, retornem false
-
-    // Si l'usuari confirma, eliminem l'usuari
-    if (confirm) {
-      await deleteUser(userId);
-    }
-  }
 
   @override
 Widget build(BuildContext context) {
